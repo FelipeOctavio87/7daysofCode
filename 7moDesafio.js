@@ -14,20 +14,14 @@ function division(a, b) {
     return b !== 0 ? a / b : "Error: División por cero";
 }
 
-function main() {
-    while (true) {
-        console.log("\nCalculadora: Seleccione una opción");
-        console.log("1. Suma");
-        console.log("2. Resta");
-        console.log("3. Multiplicación");
-        console.log("4. División");
-        console.log("5. Salir");
-        
-        let opcion = prompt("Ingrese el número de la operación:");
+function iniciarCalculadora() {
+    let opcion;
+    do {
+        opcion = prompt("Seleccione una opción:\n1. Suma\n2. Resta\n3. Multiplicación\n4. División\n5. Salir");
         
         if (opcion === "5") {
-            console.log("Hasta la próxima");
-            break;
+            alert("Hasta la próxima");
+            return;
         }
         
         if (["1", "2", "3", "4"].includes(opcion)) {
@@ -35,28 +29,28 @@ function main() {
             let num2 = parseFloat(prompt("Ingrese el segundo número:"));
             
             if (isNaN(num1) || isNaN(num2)) {
-                console.log("Error: Ingrese solo números válidos");
+                alert("Error: Ingrese solo números válidos");
                 continue;
             }
             
+            let resultado;
             switch (opcion) {
                 case "1":
-                    console.log("Resultado:", suma(num1, num2));
+                    resultado = suma(num1, num2);
                     break;
                 case "2":
-                    console.log("Resultado:", resta(num1, num2));
+                    resultado = resta(num1, num2);
                     break;
                 case "3":
-                    console.log("Resultado:", multiplicacion(num1, num2));
+                    resultado = multiplicacion(num1, num2);
                     break;
                 case "4":
-                    console.log("Resultado:", division(num1, num2));
+                    resultado = division(num1, num2);
                     break;
             }
+            alert("Resultado: " + resultado);
         } else {
-            console.log("Opción inválida, intente de nuevo");
+            alert("Opción inválida, intente de nuevo");
         }
-    }
+    } while (opcion !== "5");
 }
-
-main();
